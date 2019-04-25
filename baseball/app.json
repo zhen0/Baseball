@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "An Ed-Tech app aimed at engaging my former English Language Learners who loved baseball .",
+    "githubUrl": "https://github.com/zhen0/BaseballBandersnatch"
   }
 }

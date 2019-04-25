@@ -1,22 +1,51 @@
 import React from "react";
 import {
   Image,
+  Button,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
+  CameraRoll,
   View
 } from "react-native";
 import { WebBrowser } from "expo";
 
-import { MonoText } from "../components/StyledText";
+import { Permissions } from "expo";
+// const ImageA = require("../assets/snack-icon.png");
+const ImageB = {
+  uri:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
+};
+
+// import { MonoText } from "../components/StyledText";
 
 export default class HomeScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      player: ".......",
+      photos: [],
+      chosenPhoto: ImageB
+    };
+  }
   static navigationOptions = {
     header: null
   };
-
+  _handleButtonPress = () => {
+    this._loadImageClick();
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: "Photos"
+    })
+      .then(r => {
+        this.setState({ photos: r.edges });
+      })
+      .catch(err => {
+        console.log(err); //Error Loading Images
+      });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -26,7 +55,10 @@ export default class HomeScreen extends React.Component {
         >
           <View style={styles.welcomeContainer}>
             <Image
-              source={require("../assets/images/baseball.png")}
+              source={{
+                uri:
+                  "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+              }}
               style={styles.welcomeImage}
             />
           </View>
@@ -39,11 +71,14 @@ export default class HomeScreen extends React.Component {
             <View
               style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
             >
-              <MonoText style={styles.codeHighlightText}>
+              <Text style={styles.codeHighlightText}>
                 Choose a Player to get started
-              </MonoText>
+              </Text>
             </View>
-
+            <Text style={styles.getStartedText}>
+              Your player is: {this.state.player}{" "}
+            </Text>
+            <Image source={this.state.chosenPhoto} style={styles.playerImage} />
             <Text style={styles.getStartedText}>
               You will be deciding how they play today!
             </Text>
@@ -69,21 +104,31 @@ export default class HomeScreen extends React.Component {
               />
             </TouchableOpacity>
           </View>
-        </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
+          <View style={styles.photosContainer}>
+            <Text> Or you can add a photo and choose your own player!</Text>
+            <Button
+              title="Load Images"
+              onPress={this._handleButtonPress}
+              style={styles.button}
+            />
+            <ScrollView>
+              {this.state.photos.map((p, i) => {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() => this._handlePlayer3(p.node.image.uri)}
+                  >
+                    <Image
+                      style={styles.playerImage}
+                      source={{ uri: p.node.image.uri }}
+                    />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -118,14 +163,48 @@ export default class HomeScreen extends React.Component {
   };
 
   _handlePlayer1 = () => {
-    WebBrowser.openBrowserAsync(
-      "https://www.mlb.com/video/marcus-semien-homers-4-on-a-line-drive-to-left-field-jurickson-profar-scores-nic?t=most-popular"
-    );
+    // WebBrowser.openBrowserAsync(
+    //   "https://www.mlb.com/video/marcus-semien-homers-4-on-a-line-drive-to-left-field-jurickson-profar-scores-nic?t=most-popular"
+    // );
+    this.setState({
+      player: "Yankees Player",
+      chosenPhoto: {
+        uri:
+          "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+      }
+    });
   };
   _handlePlayer2 = () => {
-    WebBrowser.openBrowserAsync(
-      "https://www.mlb.com/video/statcast-cain-s-running-catch?t=most-popular"
-    );
+    // WebBrowser.openBrowserAsync(
+    //   "https://www.mlb.com/video/statcast-cain-s-running-catch?t=most-popular"
+    // );
+    this.setState({
+      player: "Mets Player",
+      chosenPhoto: {
+        uri:
+          "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+      }
+    });
+  };
+  _handlePlayer3 = photo => {
+    // WebBrowser.openBrowserAsync(
+    //   "https://www.mlb.com/video/statcast-cain-s-running-catch?t=most-popular"
+    // );
+    this.setState({
+      player: "You!",
+      chosenPhoto: { uri: photo }
+    });
+  };
+  _loadImageClick = async () => {
+    try {
+      // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== "granted") {
+        throw new Error("Camera permission not granted");
+      }
+    } catch (err) {
+      console.log("error in camera roll permissions", err);
+    }
   };
 }
 
@@ -222,5 +301,19 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: "#2e78b7"
+  },
+  photosContainer: {
+    paddingTop: 60,
+    alignItems: "center"
+  },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: "center",
+    backgroundColor: "#4842f4"
+  },
+  buttonText: {
+    padding: 20,
+    color: "green"
   }
 });
