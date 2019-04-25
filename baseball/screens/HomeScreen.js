@@ -13,6 +13,8 @@ import {
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import { Permissions } from "expo";
+import { connect } from "react-redux";
+import redux from "redux";
 
 const ImageB = {
   uri:
@@ -21,7 +23,7 @@ const ImageB = {
 
 // import { MonoText } from "../components/StyledText";
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -313,3 +315,8 @@ const styles = StyleSheet.create({
     color: "green"
   }
 });
+
+const mapState = state => ({
+  player: state.players.player
+});
+export default connect(mapState)(HomeScreen);
