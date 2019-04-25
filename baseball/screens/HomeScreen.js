@@ -11,9 +11,9 @@ import {
   View
 } from "react-native";
 import { WebBrowser } from "expo";
-
+import { MonoText } from "../components/StyledText";
 import { Permissions } from "expo";
-// const ImageA = require("../assets/snack-icon.png");
+
 const ImageB = {
   uri:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
@@ -129,6 +129,7 @@ export default class HomeScreen extends React.Component {
             </ScrollView>
           </View>
         </ScrollView>
+        <View />
       </View>
     );
   }
@@ -175,9 +176,6 @@ export default class HomeScreen extends React.Component {
     });
   };
   _handlePlayer2 = () => {
-    // WebBrowser.openBrowserAsync(
-    //   "https://www.mlb.com/video/statcast-cain-s-running-catch?t=most-popular"
-    // );
     this.setState({
       player: "Mets Player",
       chosenPhoto: {
@@ -187,14 +185,12 @@ export default class HomeScreen extends React.Component {
     });
   };
   _handlePlayer3 = photo => {
-    // WebBrowser.openBrowserAsync(
-    //   "https://www.mlb.com/video/statcast-cain-s-running-catch?t=most-popular"
-    // );
     this.setState({
       player: "You!",
       chosenPhoto: { uri: photo }
     });
   };
+
   _loadImageClick = async () => {
     try {
       // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
