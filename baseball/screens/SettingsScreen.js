@@ -34,7 +34,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Or you can add a photo and choose your own player!</Text>
+        <Text> Name: {this.props.name} </Text>
         <Button
           title="Load Images"
           onPress={this._handleButtonPress}

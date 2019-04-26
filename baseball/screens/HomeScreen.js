@@ -149,7 +149,7 @@ export default class HomeScreen extends React.Component {
         "https://pramshare.herokuapp.com/api/users",
         { name: "Yankee", address: "NYC" }
       );
-      console.log(typeof data.address);
+
       this.setState({
         player: "Yankee",
         chosenPhoto: {
