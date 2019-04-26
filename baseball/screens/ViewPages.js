@@ -2,6 +2,10 @@ import React from "react";
 import { View, StyleSheet, Text, ViewPagerAndroid, Image } from "react-native";
 
 class MyPager extends React.Component {
+  constructor() {
+    super();
+    this.state = { player: "" };
+  }
   render() {
     return (
       <ViewPagerAndroid style={styles.viewPager} initialPage={0}>

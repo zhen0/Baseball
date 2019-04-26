@@ -162,42 +162,35 @@ export default class HomeScreen extends React.Component {
       console.error(error);
     }
   };
-  // this.setState({
-  //   player: "Yankees Player",
-  //   chosenPhoto: {
-  //     uri:
-  //       "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-  //   }
-  // });
+
+  _handlePlayer2 = () => {
+    this.setState({
+      player: "Mets Player",
+      chosenPhoto: {
+        uri:
+          "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+      }
+    });
+  };
+  _handlePlayer3 = photo => {
+    this.setState({
+      player: "You!",
+      chosenPhoto: { uri: photo }
+    });
+  };
+
+  _loadImageClick = async () => {
+    try {
+      // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== "granted") {
+        throw new Error("Camera permission not granted");
+      }
+    } catch (err) {
+      console.log("error in camera roll permissions", err);
+    }
+  };
 }
-_handlePlayer2 = () => {
-  this.setState({
-    player: "Mets Player",
-    chosenPhoto: {
-      uri:
-        "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-    }
-  });
-};
-_handlePlayer3 = photo => {
-  this.setState({
-    player: "You!",
-    chosenPhoto: { uri: photo }
-  });
-};
-
-_loadImageClick = async () => {
-  try {
-    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status !== "granted") {
-      throw new Error("Camera permission not granted");
-    }
-  } catch (err) {
-    console.log("error in camera roll permissions", err);
-  }
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
