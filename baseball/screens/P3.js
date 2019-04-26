@@ -1,38 +1,35 @@
 import React from "react";
 import {
   Image,
-  Platform,
   Button,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   CameraRoll,
-  View,
-  ViewPagerAndroid
+  View
 } from "react-native";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import { Permissions } from "expo";
 import axios from "axios";
-import SettingsScreen from "./SettingsScreen";
-import ChoosePlayer from "./P1_ChoosePlayer";
-import P2 from "./P2";
-import P3 from "./P3";
-import SignUp from "./SignUp";
 
 const ImageB = {
   uri:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
 };
 
-class MyPager extends React.Component {
+// import { MonoText } from "../components/StyledText";
+
+export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
       player: ".......",
       photos: [],
-      chosenPhoto: ImageB
+      chosenPhoto: ImageB,
+      address: "waiting"
     };
   }
   static navigationOptions = {
@@ -41,79 +38,20 @@ class MyPager extends React.Component {
 
   render() {
     return (
-      <ViewPagerAndroid style={styles.viewPager} initialPage={0}>
-        <View key="1" style={styles.container}>
-          <SignUp />
-        </View>
-        <View key="2" style={styles.container}>
-          <ChoosePlayer />
-        </View>
-        <View key="3">
-          <P3 />
-        </View>
-        <View key="4">
-          <SettingsScreen name={this.state.player} />
-        </View>
-      </ViewPagerAndroid>
+      <View>
+        <Text>P3!!GI</Text>
+        <Image
+          source={{
+            uri:
+              "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+          }}
+          style={{ width: 400, height: 400 }}
+        />
+        <Text>This is a Mets Player.</Text>
+      </View>
     );
   }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      "https://docs.expo.io/versions/latest/guides/development-mode"
-    );
-  };
-
-  _handlePlayer1 = async () => {
-    try {
-      let { data } = await axios.post(
-        "https://pramshare.herokuapp.com/api/users",
-        { name: "Yankee", address: "NYC" }
-      );
-
-      this.setState({
-        player: "Yankee",
-        chosenPhoto: {
-          uri:
-            "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-        },
-        address: data.address
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  _handlePlayer2 = () => {
-    this.setState({
-      player: "Mets Player",
-      chosenPhoto: {
-        uri:
-          "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-      }
-    });
-  };
-
-  _handlePlayer3 = photo => {
-    this.setState({
-      player: "You!",
-      chosenPhoto: { uri: photo }
-    });
-  };
-
-  _loadImageClick = async () => {
-    try {
-      // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        throw new Error("Camera permission not granted");
-      }
-    } catch (err) {
-      console.log("error in camera roll permissions", err);
-    }
-  };
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -221,10 +159,5 @@ const styles = StyleSheet.create({
   buttonText: {
     padding: 20,
     color: "green"
-  },
-  viewPager: {
-    flex: 1
   }
 });
-
-export default MyPager;

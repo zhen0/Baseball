@@ -51,31 +51,14 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={{
-                uri:
-                  "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
-              }}
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>
-              Welcome to Baseball Bandersnatch!
+        <ScrollView>
+          <View
+            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+          >
+            <Text style={styles.codeHighlightText}>
+              Choose a Player to get started
             </Text>
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <Text style={styles.codeHighlightText}>
-                Choose a Player to get started
-              </Text>
-            </View>
+
             <Text style={styles.getStartedText}>
               Your player is: {this.state.player}{" "}
             </Text>
@@ -86,7 +69,7 @@ export default class HomeScreen extends React.Component {
             </Text>
           </View>
 
-          <View style={styles.helpContainer}>
+          <View>
             <TouchableOpacity onPress={this._handlePlayer1}>
               <Image
                 source={{
@@ -130,7 +113,6 @@ export default class HomeScreen extends React.Component {
             </ScrollView>
           </View>
         </ScrollView>
-        <View />
       </View>
     );
   }
@@ -140,24 +122,14 @@ export default class HomeScreen extends React.Component {
     );
   };
 
-  _handlePlayer1 = async () => {
-    try {
-      let { data } = await axios.post(
-        "https://pramshare.herokuapp.com/api/users",
-        { name: "Yankee", address: "NYC" }
-      );
-
-      this.setState({
-        player: "Yankee",
-        chosenPhoto: {
-          uri:
-            "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-        },
-        address: data.address
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  _handlePlayer1 = () => {
+    this.setState({
+      player: "Yankee",
+      chosenPhoto: {
+        uri:
+          "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+      }
+    });
   };
 
   _handlePlayer2 = () => {
