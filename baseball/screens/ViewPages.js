@@ -65,7 +65,10 @@ class MyPager extends React.Component {
             playerImage={this.state.chosenPhoto}
           />
         </View>
-        <View key="5">{this.state.choice1 === "a" ? <P3 /> : <P2 />}</View>
+        <View key="5">
+          {this.state.choice1 === "a" ? <P2 /> : <P4 />}
+          {this.state.choice1 === "a" ? <P3 /> : <P4 />}
+        </View>
       </ViewPagerAndroid>
     );
   }
@@ -81,7 +84,7 @@ class MyPager extends React.Component {
         address: data.address
       });
 
-      Alert.alert("You have been added!");
+      Alert.alert("You have been added! Swipe to move to the next page!");
     } catch (error) {
       console.error(error);
     }

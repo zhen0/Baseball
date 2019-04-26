@@ -81,6 +81,10 @@ export default class HomeScreen extends React.Component {
         <Text>
           I hope this explanation was “very” helpful and not “too” confusing!
         </Text>
+        <Text>
+          Keep Swiping to work through the story. Then take the quiz to show
+          your understanding.
+        </Text>
       </View>
     );
   }
