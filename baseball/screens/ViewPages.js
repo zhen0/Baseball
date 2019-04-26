@@ -8,18 +8,19 @@ import {
   Text,
   TouchableOpacity,
   CameraRoll,
+  Alert,
   View,
   ViewPagerAndroid
 } from "react-native";
 import { WebBrowser } from "expo";
-import { MonoText } from "../components/StyledText";
-import { Permissions } from "expo";
+
 import axios from "axios";
 import SettingsScreen from "./SettingsScreen";
 import ChoosePlayer from "./P1_ChoosePlayer";
 import P2 from "./P2";
 import P3 from "./P3";
 import SignUp from "./SignUp";
+import Lesson from "./Lesson";
 
 const ImageB = {
   uri:
@@ -31,8 +32,10 @@ class MyPager extends React.Component {
     super();
     this.state = {
       player: ".......",
-      photos: [],
-      chosenPhoto: ImageB
+      chosenPhoto: ImageB,
+      name: "",
+      address: "",
+      choice1: ""
     };
   }
   static navigationOptions = {
@@ -43,20 +46,48 @@ class MyPager extends React.Component {
     return (
       <ViewPagerAndroid style={styles.viewPager} initialPage={0}>
         <View key="1" style={styles.container}>
-          <SignUp />
+          <SignUp
+            name={this.state.name}
+            submit={this._handleSubmit}
+            address={this.state.address}
+          />
         </View>
         <View key="2" style={styles.container}>
-          <ChoosePlayer />
+          <Lesson />
         </View>
         <View key="3">
-          <P3 />
+          <ChoosePlayer
+            player={this.state.player}
+            chosenPhoto={this.state.chosenPhoto}
+            choosePlayer1={this._handlePlayer1}
+            choosePlayer2={this._handlePlayer2}
+            choosePlayer3={this._handlePlayer3}
+          />
         </View>
         <View key="4">
-          <SettingsScreen name={this.state.player} />
+          <SettingsScreen choice1={this._choice1} />
         </View>
+        <View key="5">{this.state.choice1 === "a" ? <P3 /> : <P2 />}</View>
       </ViewPagerAndroid>
     );
   }
+  _handleSubmit = async info => {
+    try {
+      let { data } = await axios.post(
+        "https://pramshare.herokuapp.com/api/users",
+        info
+      );
+
+      this.setState({
+        name: data.name,
+        address: data.address
+      });
+
+      Alert.alert("You have been added!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync(
@@ -64,24 +95,14 @@ class MyPager extends React.Component {
     );
   };
 
-  _handlePlayer1 = async () => {
-    try {
-      let { data } = await axios.post(
-        "https://pramshare.herokuapp.com/api/users",
-        { name: "Yankee", address: "NYC" }
-      );
-
-      this.setState({
-        player: "Yankee",
-        chosenPhoto: {
-          uri:
-            "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-        },
-        address: data.address
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  _handlePlayer1 = () => {
+    this.setState({
+      player: "Yankee",
+      chosenPhoto: {
+        uri:
+          "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+      }
+    });
   };
 
   _handlePlayer2 = () => {
@@ -96,21 +117,14 @@ class MyPager extends React.Component {
 
   _handlePlayer3 = photo => {
     this.setState({
-      player: "You!",
+      player: this.state.name,
       chosenPhoto: { uri: photo }
     });
   };
-
-  _loadImageClick = async () => {
-    try {
-      // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        throw new Error("Camera permission not granted");
-      }
-    } catch (err) {
-      console.log("error in camera roll permissions", err);
-    }
+  _choice1 = answer => {
+    this.setState({
+      choice1: answer
+    });
   };
 }
 

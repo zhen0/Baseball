@@ -6,12 +6,13 @@ import {
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/HomeScreen";
 import ViewPages from "../screens/ViewPages";
-import SettingsScreen from "../screens/SettingsScreen";
+import Quiz from "../screens/Quiz";
+
+import Lesson from "../screens/Lesson";
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: ViewPages
 });
 
 HomeStack.navigationOptions = {
@@ -28,11 +29,11 @@ HomeStack.navigationOptions = {
   )
 };
 
-const LinksStack = createStackNavigator({
-  Story: ViewPages
+const HelpStack = createStackNavigator({
+  Help: Lesson
 });
 
-LinksStack.navigationOptions = {
+HelpStack.navigationOptions = {
   tabBarLabel: "Story",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -42,12 +43,12 @@ LinksStack.navigationOptions = {
   )
 };
 
-const SettingsStack = createStackNavigator({
-  Photos: SettingsScreen
+const QuizStack = createStackNavigator({
+  Quiz: Quiz
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: "Photos",
+QuizStack.navigationOptions = {
+  tabBarLabel: "Quiz",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -58,6 +59,6 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack
+  HelpStack,
+  QuizStack
 });

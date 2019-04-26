@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   Text,
-  Camera,
+  TouchableOpacity,
   StyleSheet
 } from "react-native";
 import { Permissions } from "expo";
@@ -17,40 +17,13 @@ export default class SettingsScreen extends React.Component {
       photos: []
     };
   }
-  _handleButtonPress = () => {
-    this._loadImageClick();
-    CameraRoll.getPhotos({
-      first: 20,
-      assetType: "Photos"
-    })
-      .then(r => {
-        this.setState({ photos: r.edges });
-      })
-      .catch(err => {
-        console.log(err); //Error Loading Images
-      });
-  };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text> Name: {this.props.name} </Text>
-        <Button
-          title="Load Images"
-          onPress={this._handleButtonPress}
-          style={styles.button}
-        />
-        <ScrollView>
-          {this.state.photos.map((p, i) => {
-            return (
-              <Image
-                key={i}
-                style={styles.playerImage}
-                source={{ uri: p.node.image.uri }}
-              />
-            );
-          })}
-        </ScrollView>
+      <View key="1" style={styles.container}>
+        <Text>Lesson 1</Text>
+        <Button onPress={() => this.props.choice1("a")} title="Choose A" />
+        <Button onPress={() => this.props.choice1("b")} title="Choose B" />
       </View>
     );
   }

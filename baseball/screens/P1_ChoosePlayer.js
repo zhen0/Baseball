@@ -10,10 +10,6 @@ import {
   CameraRoll,
   View
 } from "react-native";
-import { WebBrowser } from "expo";
-import { MonoText } from "../components/StyledText";
-import { Permissions } from "expo";
-import axios from "axios";
 
 const ImageB = {
   uri:
@@ -26,10 +22,8 @@ export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      player: ".......",
       photos: [],
-      chosenPhoto: ImageB,
-      address: "waiting"
+      chosenPhoto: ImageB
     };
   }
   static navigationOptions = {
@@ -55,22 +49,22 @@ export default class HomeScreen extends React.Component {
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           >
-            <Text style={styles.codeHighlightText}>
+            <Text style={styles.getStartedText}>
               Choose a Player to get started
             </Text>
 
             <Text style={styles.getStartedText}>
-              Your player is: {this.state.player}{" "}
+              Your player is: {this.props.player}{" "}
             </Text>
             <Image source={this.state.chosenPhoto} style={styles.playerImage} />
-            <Text>Their address is: {this.state.address} </Text>
+
             <Text style={styles.getStartedText}>
               You will be deciding how they play today!
             </Text>
           </View>
 
           <View>
-            <TouchableOpacity onPress={this._handlePlayer1}>
+            <TouchableOpacity onPress={() => this.props.choosePlayer1()}>
               <Image
                 source={{
                   uri:
@@ -79,7 +73,7 @@ export default class HomeScreen extends React.Component {
                 style={styles.playerImage}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={this._handlePlayer2}>
+            <TouchableOpacity onPress={() => this.props.choosePlayer2()}>
               <Image
                 source={{
                   uri:
@@ -101,7 +95,7 @@ export default class HomeScreen extends React.Component {
                 return (
                   <TouchableOpacity
                     key={i}
-                    onPress={() => this._handlePlayer3(p.node.image.uri)}
+                    onPress={() => this.props.choosePlayer3(p.node.image.uri)}
                   >
                     <Image
                       style={styles.playerImage}
@@ -116,37 +110,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      "https://docs.expo.io/versions/latest/guides/development-mode"
-    );
-  };
 
-  _handlePlayer1 = () => {
-    this.setState({
-      player: "Yankee",
-      chosenPhoto: {
-        uri:
-          "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-      }
-    });
-  };
-
-  _handlePlayer2 = () => {
-    this.setState({
-      player: "Mets Player",
-      chosenPhoto: {
-        uri:
-          "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-      }
-    });
-  };
-  _handlePlayer3 = photo => {
-    this.setState({
-      player: "You!",
-      chosenPhoto: { uri: photo }
-    });
-  };
   _loadImageClick = async () => {
     try {
       // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
