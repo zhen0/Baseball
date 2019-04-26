@@ -1,35 +1,24 @@
 import React from "react";
 import {
   Image,
-  Button,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  CameraRoll,
+  Button,
+  TextInput,
+  Alert,
   View
 } from "react-native";
-import { WebBrowser } from "expo";
-import { MonoText } from "../components/StyledText";
-import { Permissions } from "expo";
+
 import axios from "axios";
-
-const ImageB = {
-  uri:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
-};
-
-// import { MonoText } from "../components/StyledText";
 
 export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      player: ".......",
-      photos: [],
-      chosenPhoto: ImageB,
-      address: "waiting"
+      name: "",
+      address: ""
     };
   }
   static navigationOptions = {
@@ -38,32 +27,69 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>P3!!GI</Text>
+      <ScrollView style={styles.container}>
         <Image
           source={{
             uri:
-              "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
           }}
-          style={{ width: 400, height: 400 }}
+          style={styles.welcomeImage}
         />
-        <Text>This is a Mets Player.</Text>
-      </View>
+
+        <Text style={styles.getStartedText}>
+          Welcome to Baseball Bandersnatch!
+        </Text>
+
+        <Text>Sign Up</Text>
+
+        <View style={{ padding: 10 }}>
+          <TextInput
+            style={{ height: 40 }}
+            placeholder="name"
+            onChangeText={name => this.setState({ name })}
+          />
+          <View style={{ padding: 10 }}>
+            <TextInput
+              style={{ height: 40 }}
+              placeholder="ClassCode"
+              onChangeText={address => this.setState({ address })}
+            />
+          </View>
+        </View>
+
+        <Button onPress={() => this._handleSubmit()} title="Add Me" />
+        <View>
+          <Text>Your Name: {this.state.name}</Text>
+          <Text>Your ClassCode: {this.state.address}</Text>
+        </View>
+      </ScrollView>
     );
   }
+
+  _handleSubmit = async () => {
+    try {
+      let { data } = await axios.post(
+        "https://pramshare.herokuapp.com/api/users",
+        this.state
+      );
+
+      this.setState({
+        name: data.name,
+        address: data.address
+      });
+      Alert.alert("You have been added!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: "center"
-  },
+
   contentContainer: {
     paddingTop: 30
   },
@@ -75,13 +101,6 @@ const styles = StyleSheet.create({
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
-  },
-  playerImage: {
-    width: 200,
-    height: 160,
     resizeMode: "contain",
     marginTop: 3,
     marginLeft: -10
@@ -145,19 +164,5 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: "#2e78b7"
-  },
-  photosContainer: {
-    paddingTop: 60,
-    alignItems: "center"
-  },
-  button: {
-    marginBottom: 30,
-    width: 260,
-    alignItems: "center",
-    backgroundColor: "#4842f4"
-  },
-  buttonText: {
-    padding: 20,
-    color: "green"
   }
 });

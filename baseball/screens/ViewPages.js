@@ -19,6 +19,7 @@ import SettingsScreen from "./SettingsScreen";
 import ChoosePlayer from "./P1_ChoosePlayer";
 import P2 from "./P2";
 import P3 from "./P3";
+import SignUp from "./SignUp";
 
 const ImageB = {
   uri:
@@ -31,8 +32,7 @@ class MyPager extends React.Component {
     this.state = {
       player: ".......",
       photos: [],
-      chosenPhoto: ImageB,
-      address: "waiting"
+      chosenPhoto: ImageB
     };
   }
   static navigationOptions = {
@@ -43,10 +43,10 @@ class MyPager extends React.Component {
     return (
       <ViewPagerAndroid style={styles.viewPager} initialPage={0}>
         <View key="1" style={styles.container}>
-          <ChoosePlayer />
+          <SignUp />
         </View>
         <View key="2" style={styles.container}>
-          <P2 />
+          <ChoosePlayer />
         </View>
         <View key="3">
           <P3 />
