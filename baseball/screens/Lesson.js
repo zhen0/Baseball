@@ -44,6 +44,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={StyleSheet.container}>
+        <Image
+          source={{
+            uri:
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+          }}
+          style={styles.welcomeImage}
+        />
         <Text>Hello {this.state.name}!</Text>
         <Text>Too or Very?</Text>
         <Text>What is the difference between “very” and “too”?</Text>

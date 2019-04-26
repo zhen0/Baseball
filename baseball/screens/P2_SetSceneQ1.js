@@ -20,9 +20,26 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <View key="1" style={styles.container}>
-        <Text>Lesson 1</Text>
-        <Button onPress={() => this.props.choice1("a")} title="Choose A" />
+      <View style={styles.container}>
+        <Image
+          source={{
+            uri:
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+          }}
+          style={styles.welcomeImage}
+        />
+        <Text>Hurray! It's Time to Play!</Text>
+        <Image
+          source={{
+            uri:
+              "https://media3.giphy.com/media/ZgUU46zeOERo4cYG8Q/giphy.gif?cid=790b76115cc35bb65a6c3478775792e4&rid=giphy.gif"
+          }}
+          style={styles.photo}
+        />
+        <View>
+          <Button onPress={() => this.props.choice1("a")} title="Choose A" />
+        </View>
+
         <Button onPress={() => this.props.choice1("b")} title="Choose B" />
       </View>
     );
@@ -62,5 +79,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginTop: 3,
     marginLeft: -10
+  },
+  photo: {
+    width: 350,
+    height: 350
   }
 });

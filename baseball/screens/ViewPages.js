@@ -15,7 +15,7 @@ import {
 import { WebBrowser } from "expo";
 
 import axios from "axios";
-import SettingsScreen from "./SettingsScreen";
+import SetSceneQ1 from "./P2_SetSceneQ1";
 import ChoosePlayer from "./P1_ChoosePlayer";
 import P2 from "./P2";
 import P3 from "./P3";
@@ -65,7 +65,7 @@ class MyPager extends React.Component {
           />
         </View>
         <View key="4">
-          <SettingsScreen choice1={this._choice1} />
+          <SetSceneQ1 choice1={this._choice1} />
         </View>
         <View key="5">{this.state.choice1 === "a" ? <P3 /> : <P2 />}</View>
       </ViewPagerAndroid>

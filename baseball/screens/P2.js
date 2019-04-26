@@ -42,6 +42,13 @@ export default class HomeScreen extends React.Component {
         <Image
           source={{
             uri:
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+          }}
+          style={styles.welcomeImage}
+        />
+        <Image
+          source={{
+            uri:
               "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
           }}
           style={{ width: 400, height: 400 }}

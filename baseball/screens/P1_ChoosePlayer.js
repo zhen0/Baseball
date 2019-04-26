@@ -46,6 +46,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={{
+            uri:
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+          }}
+          style={styles.welcomeImage}
+        />
         <ScrollView>
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
@@ -57,7 +64,7 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.getStartedText}>
               Your player is: {this.props.player}{" "}
             </Text>
-            <Image source={this.state.chosenPhoto} style={styles.playerImage} />
+            <Image source={this.props.chosenPhoto} style={styles.playerImage} />
 
             <Text style={styles.getStartedText}>
               You will be deciding how they play today!

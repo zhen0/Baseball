@@ -39,6 +39,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View>
+        <Image
+          source={{
+            uri:
+              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+          }}
+          style={styles.welcomeImage}
+        />
         <Text>P3!!GI</Text>
         <Image
           source={{
