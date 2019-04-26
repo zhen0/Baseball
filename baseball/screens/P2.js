@@ -48,14 +48,12 @@ export default class HomeScreen extends React.Component {
         />
         <Image
           source={{
-            uri:
-              "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+            uri: "https://media.giphy.com/media/3ohhwAIFJtEnAIYaju/giphy.gif"
           }}
-          style={{ width: 400, height: 400 }}
+          style={styles.photo}
         />
-        <Text>
-          Hello!!! This is a Yankees player. He is about to hit the ball.
-        </Text>
+
+        <Text>Yes! He hit it very far and his team wins!! </Text>
       </View>
     );
   }
@@ -65,20 +63,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: "center"
-  },
-  contentContainer: {
-    paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 20
+  photo: {
+    width: 450,
+    height: 350
   },
   welcomeImage: {
     width: 100,
@@ -86,86 +73,5 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginTop: 3,
     marginLeft: -10
-  },
-  playerImage: {
-    width: 200,
-    height: 160,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50
-  },
-  homeScreenFilename: {
-    marginVertical: 7
-  },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
-  },
-  codeHighlightContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
-    borderRadius: 3,
-    paddingHorizontal: 4
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    lineHeight: 24,
-    textAlign: "center"
-  },
-  tabBarInfoContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    textAlign: "center"
-  },
-  navigationFilename: {
-    marginTop: 5
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: "center"
-  },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: "#2e78b7"
-  },
-  photosContainer: {
-    paddingTop: 60,
-    alignItems: "center"
-  },
-  button: {
-    marginBottom: 30,
-    width: 260,
-    alignItems: "center",
-    backgroundColor: "#4842f4"
-  },
-  buttonText: {
-    padding: 20,
-    color: "green"
   }
 });

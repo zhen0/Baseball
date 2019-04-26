@@ -50,6 +50,7 @@ export default class SetSceneQ1 extends React.Component {
           onPress={() => this.props.choice1("b")}
           title="They hit it too far!"
         />
+        <Text>Swipe to see what happens!</Text>
       </View>
     );
   }
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     marginLeft: -10
   },
   photo: {
-    width: 350,
+    width: 450,
     height: 350
   },
   welcomeImage: {
