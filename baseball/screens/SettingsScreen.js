@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   Text,
-  CameraRoll,
+  Camera,
   StyleSheet
 } from "react-native";
 import { Permissions } from "expo";
@@ -58,12 +58,12 @@ export default class SettingsScreen extends React.Component {
   _loadImageClick = async () => {
     try {
       // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const { status } = await Permissions.askAsync(Permissions.CAMERA);
       if (status !== "granted") {
         throw new Error("Camera permission not granted");
       }
     } catch (err) {
-      console.log("error in camera roll permissions", err);
+      console.log("error in camera permissions", err);
     }
   };
 }

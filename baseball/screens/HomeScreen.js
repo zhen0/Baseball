@@ -13,6 +13,7 @@ import {
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import { Permissions } from "expo";
+import axios from "axios";
 
 const ImageB = {
   uri:
@@ -27,7 +28,8 @@ export default class HomeScreen extends React.Component {
     this.state = {
       player: ".......",
       photos: [],
-      chosenPhoto: ImageB
+      chosenPhoto: ImageB,
+      address: "waiting"
     };
   }
   static navigationOptions = {
@@ -79,6 +81,7 @@ export default class HomeScreen extends React.Component {
               Your player is: {this.state.player}{" "}
             </Text>
             <Image source={this.state.chosenPhoto} style={styles.playerImage} />
+            <Text>Their address is: {this.state.address} </Text>
             <Text style={styles.getStartedText}>
               You will be deciding how they play today!
             </Text>
@@ -134,75 +137,66 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  // _maybeRenderDevelopmentModeWarning() {
-  //   if (__DEV__) {
-  //     const learnMoreButton = (
-  //       <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-  //         Learn more
-  //       </Text>
-  //     );
-
-  //     return (
-  //       <Text style={styles.developmentModeText}>
-  //         Development mode is enabled, your app will be slower but you can use
-  //         useful development tools. {learnMoreButton}
-  //       </Text>
-  //     );
-  //   } else {
-  //     return (
-  //       <Text style={styles.developmentModeText}>
-  //         You are not in development mode, your app will run at full speed.
-  //       </Text>
-  //     );
-  //   }
-  // }
-
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync(
       "https://docs.expo.io/versions/latest/guides/development-mode"
     );
   };
 
-  _handlePlayer1 = () => {
-    // WebBrowser.openBrowserAsync(
-    //   "https://www.mlb.com/video/marcus-semien-homers-4-on-a-line-drive-to-left-field-jurickson-profar-scores-nic?t=most-popular"
-    // );
-    this.setState({
-      player: "Yankees Player",
-      chosenPhoto: {
-        uri:
-          "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-      }
-    });
-  };
-  _handlePlayer2 = () => {
-    this.setState({
-      player: "Mets Player",
-      chosenPhoto: {
-        uri:
-          "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-      }
-    });
-  };
-  _handlePlayer3 = photo => {
-    this.setState({
-      player: "You!",
-      chosenPhoto: { uri: photo }
-    });
-  };
-
-  _loadImageClick = async () => {
+  _handlePlayer1 = async () => {
     try {
-      // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        throw new Error("Camera permission not granted");
-      }
-    } catch (err) {
-      console.log("error in camera roll permissions", err);
+      let { data } = await axios.post(
+        "https://pramshare.herokuapp.com/api/users",
+        { name: "Yankee", address: "NYC" }
+      );
+      console.log(typeof data.address);
+      this.setState({
+        player: "Yankee",
+        chosenPhoto: {
+          uri:
+            "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+        },
+        address: data.address
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
+  // this.setState({
+  //   player: "Yankees Player",
+  //   chosenPhoto: {
+  //     uri:
+  //       "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+  //   }
+  // });
 }
+_handlePlayer2 = () => {
+  this.setState({
+    player: "Mets Player",
+    chosenPhoto: {
+      uri:
+        "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+    }
+  });
+};
+_handlePlayer3 = photo => {
+  this.setState({
+    player: "You!",
+    chosenPhoto: { uri: photo }
+  });
+};
+
+_loadImageClick = async () => {
+  try {
+    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status !== "granted") {
+      throw new Error("Camera permission not granted");
+    }
+  } catch (err) {
+    console.log("error in camera roll permissions", err);
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
