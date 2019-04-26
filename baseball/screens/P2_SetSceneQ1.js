@@ -10,12 +10,10 @@ import {
 } from "react-native";
 import { Permissions } from "expo";
 
-export default class SettingsScreen extends React.Component {
+export default class SetSceneQ1 extends React.Component {
   constructor() {
     super();
-    this.state = {
-      photos: []
-    };
+    this.state = {};
   }
 
   render() {
@@ -36,11 +34,22 @@ export default class SettingsScreen extends React.Component {
           }}
           style={styles.photo}
         />
+        <Text>
+          {this.props.player} is about to hit the ball. It's an important shot!
+          If they do well, they might win the game. If not, it's all over.
+        </Text>
+        <Text>Do they hit the ball very far? </Text>
         <View>
-          <Button onPress={() => this.props.choice1("a")} title="Choose A" />
+          <Button
+            onPress={() => this.props.choice1("a")}
+            title="They hit it very far!"
+          />
         </View>
-
-        <Button onPress={() => this.props.choice1("b")} title="Choose B" />
+        <Text>Or do they hit it too far?</Text>
+        <Button
+          onPress={() => this.props.choice1("b")}
+          title="They hit it too far!"
+        />
       </View>
     );
   }
@@ -83,5 +92,12 @@ const styles = StyleSheet.create({
   photo: {
     width: 350,
     height: 350
+  },
+  welcomeImage: {
+    width: 100,
+    height: 80,
+    resizeMode: "contain",
+    marginTop: 3,
+    marginLeft: -10
   }
 });

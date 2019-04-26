@@ -1,13 +1,7 @@
 import React from "react";
 import {
-  Image,
   Platform,
-  Button,
-  ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  CameraRoll,
   Alert,
   View,
   ViewPagerAndroid
@@ -65,7 +59,11 @@ class MyPager extends React.Component {
           />
         </View>
         <View key="4">
-          <SetSceneQ1 choice1={this._choice1} />
+          <SetSceneQ1
+            choice1={this._choice1}
+            player={this.state.player}
+            playerImage={this.state.chosenPhoto}
+          />
         </View>
         <View key="5">{this.state.choice1 === "a" ? <P3 /> : <P2 />}</View>
       </ViewPagerAndroid>
