@@ -1,5 +1,25 @@
 import React from "react";
-import { View, StyleSheet, Text, ViewPagerAndroid, Image } from "react-native";
+import {
+  Image,
+  Platform,
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  CameraRoll,
+  View,
+  ViewPagerAndroid
+} from "react-native";
+import { WebBrowser } from "expo";
+import { MonoText } from "../components/StyledText";
+import { Permissions } from "expo";
+import axios from "axios";
+
+const ImageB = {
+  uri:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
+};
 
 class MyPager extends React.Component {
   constructor() {
@@ -9,7 +29,7 @@ class MyPager extends React.Component {
   render() {
     return (
       <ViewPagerAndroid style={styles.viewPager} initialPage={0}>
-        <View key="1">
+        <View key="2">
           <Image
             source={{
               uri:
@@ -19,7 +39,7 @@ class MyPager extends React.Component {
           />
           <Text>This is a Yankees player. He is about to hit the ball.</Text>
         </View>
-        <View key="2">
+        <View key="3">
           <Image
             source={{
               uri:
