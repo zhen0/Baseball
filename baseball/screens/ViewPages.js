@@ -13,6 +13,7 @@ import SetSceneQ1 from "./P2_SetSceneQ1";
 import ChoosePlayer from "./P1_ChoosePlayer";
 import P2 from "./P2";
 import P3 from "./P3";
+import P4 from "./P4";
 import SignUp from "./SignUp";
 import Lesson from "./Lesson";
 
@@ -66,8 +67,15 @@ class MyPager extends React.Component {
           />
         </View>
         <View key="5">
-          {this.state.choice1 === "a" ? <P2 /> : <P4 />}
-          {this.state.choice1 === "a" ? <P3 /> : <P4 />}
+          {this.state.choice1 ? (
+            this.state.choice1 === "a" ? (
+              <P2 />
+            ) : (
+              <P3 />
+            )
+          ) : (
+            <P4 />
+          )}
         </View>
       </ViewPagerAndroid>
     );
