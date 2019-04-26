@@ -1,18 +1,57 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
 export default class SettingsScreen extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      answer1: "",
+      answer2: ""
+    };
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.getStartedText}> Test Your Understanding! </Text>
+        <Text>
+          When we use 'too' do we usually mean something positive or negative?
+        </Text>
+        <View style={{ padding: 10 }}>
+          <TextInput
+            style={{ height: 40 }}
+            placeholder="Your Answer"
+            onChangeText={answer1 => this.setState({ answer1 })}
+          />
+          <Text>
+            "I had a great party and ___ many people came!" Which word would be
+            better? too or very?{" "}
+          </Text>
+          <View style={{ padding: 10 }}>
+            <TextInput
+              style={{ height: 40 }}
+              placeholder="Your answer"
+              onChangeText={answer2 => this.setState({ answer2 })}
+            />
+          </View>
+        </View>
+        <Button
+          onPress={() => this._checkAnswer()}
+          title="Submit My Answers!"
+        />
       </View>
     );
+  }
+  _checkAnswer() {
+    let points = 0;
+    if (this.state.answer2 === "very") {
+      points++;
+    }
+    if (this.state.answer1 === "positive") {
+      points++;
+    }
+
+    this.props.submit(points);
   }
 }
 

@@ -57,7 +57,7 @@ export default class HomeScreen extends React.Component {
           </View>
         </View>
 
-        <Button onPress={() => this.props.submit(this.state)} title="Add Me" />
+        <Button onPress={() => this.props.add(this.state)} title="Add Me" />
         <View>
           <Text>Your Name: {this.props.name}</Text>
           <Text>Your ClassCode: {this.props.address}</Text>

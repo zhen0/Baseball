@@ -16,6 +16,7 @@ import P3 from "./P3";
 import P4 from "./P4";
 import SignUp from "./SignUp";
 import Lesson from "./Lesson";
+import Quiz from "./Quiz";
 
 const ImageB = {
   uri:
@@ -43,7 +44,7 @@ class MyPager extends React.Component {
         <View key="1" style={styles.container}>
           <SignUp
             name={this.state.name}
-            submit={this._handleSubmit}
+            add={this._addMe}
             address={this.state.address}
           />
         </View>
@@ -77,6 +78,13 @@ class MyPager extends React.Component {
             <P4 />
           )}
         </View>
+        <View key="6">
+          <Quiz
+            name={this.state.name}
+            submit={this._handleSubmit}
+            address={this.state.address}
+          />
+        </View>
       </ViewPagerAndroid>
     );
   }
@@ -84,15 +92,10 @@ class MyPager extends React.Component {
     try {
       let { data } = await axios.post(
         "https://pramshare.herokuapp.com/api/users",
-        info
+        { name: this.state.name, address: this.state.address, points: info }
       );
-
-      this.setState({
-        name: data.name,
-        address: data.address
-      });
-
-      Alert.alert("You have been added! Swipe to move to the next page!");
+      console.log("data in ViewPages", data);
+      Alert.alert("Your answers have been submitted!");
     } catch (error) {
       console.error(error);
     }
@@ -134,6 +137,13 @@ class MyPager extends React.Component {
     this.setState({
       choice1: answer
     });
+  };
+  _addMe = info => {
+    this.setState({
+      name: info.name,
+      address: info.address
+    });
+    Alert.alert("You have been added! Swipe to move to the next page!");
   };
 }
 

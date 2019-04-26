@@ -98,21 +98,20 @@ export default class HomeScreen extends React.Component {
               onPress={this._handleButtonPress}
               style={styles.button}
             />
-            <ScrollView>
-              {this.state.photos.map((p, i) => {
-                return (
-                  <TouchableOpacity
-                    key={i}
-                    onPress={() => this.props.choosePlayer3(p.node.image.uri)}
-                  >
-                    <Image
-                      style={styles.playerImage}
-                      source={{ uri: p.node.image.uri }}
-                    />
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
+
+            {this.state.photos.map((p, i) => {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  onPress={() => this.props.choosePlayer3(p.node.image.uri)}
+                >
+                  <Image
+                    style={styles.playerImage}
+                    source={{ uri: p.node.image.uri }}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </ScrollView>
       </View>
