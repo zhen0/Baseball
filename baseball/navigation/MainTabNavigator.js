@@ -30,11 +30,11 @@ HomeStack.navigationOptions = {
 };
 
 const HelpStack = createStackNavigator({
-  Help: Lesson
+  Lesson: Lesson
 });
 
 HelpStack.navigationOptions = {
-  tabBarLabel: "Story",
+  tabBarLabel: "Lesson",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

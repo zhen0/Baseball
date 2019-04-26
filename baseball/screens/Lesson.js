@@ -46,6 +46,34 @@ export default class HomeScreen extends React.Component {
       <View style={StyleSheet.container}>
         <Text>Hello {this.state.name}!</Text>
         <Text>Too or Very?</Text>
+        <Text>What is the difference between “very” and “too”?</Text>
+
+        <Text>
+          {" "}
+          Students often confuse these two adverbs. Both come before adjectives
+          or adverbs. Both make those words stronger. However, “very” does not
+          have a negative meaning, while “too” does.
+        </Text>
+
+        <Text>The test was “very” difficult.</Text>
+        <Text>The test was “too” difficult.</Text>
+        <Text>
+          If you say a test was “very” difficult, it challenged you, but you
+          could still do it. In contrast, if you say a test was “too” difficult,
+          you’re worried that you failed.
+        </Text>
+
+        <Text>The bag was “very” expensive.</Text>
+        <Text>The bag was “too” expensive.</Text>
+        <Text>
+          Something that is “very” expensive can still be bought if you save up
+          for it. However, an item that is “too” expensive must be left in the
+          store.
+        </Text>
+
+        <Text>
+          I hope this explanation was “very” helpful and not “too” confusing!
+        </Text>
       </View>
     );
   }

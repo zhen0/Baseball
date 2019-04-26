@@ -10,6 +10,7 @@ import {
   CameraRoll,
   View
 } from "react-native";
+import { Permissions } from "expo";
 
 const ImageB = {
   uri:
