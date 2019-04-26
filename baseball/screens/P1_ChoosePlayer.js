@@ -1,30 +1,28 @@
 import React from "react";
 import {
   Image,
-  Platform,
   Button,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   CameraRoll,
-  View,
-  ViewPagerAndroid
+  View
 } from "react-native";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import { Permissions } from "expo";
 import axios from "axios";
-import SettingsScreen from "./SettingsScreen";
-import ChoosePlayer from "./P1_ChoosePlayer";
-import P2 from "./P2";
 
 const ImageB = {
   uri:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHQCeddahLSs57x2X_nfO4DrlBT8eGPV9iENxyKuGZSJkvj4-W"
 };
 
-class MyPager extends React.Component {
+// import { MonoText } from "../components/StyledText";
+
+export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -37,33 +35,105 @@ class MyPager extends React.Component {
   static navigationOptions = {
     header: null
   };
-
+  _handleButtonPress = () => {
+    this._loadImageClick();
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: "Photos"
+    })
+      .then(r => {
+        this.setState({ photos: r.edges });
+      })
+      .catch(err => {
+        console.log(err); //Error Loading Images
+      });
+  };
   render() {
     return (
-      <ViewPagerAndroid style={styles.viewPager} initialPage={0}>
-        <View key="1" style={styles.container}>
-          <ChoosePlayer />
-        </View>
-        <View key="2" style={styles.container}>
-          <P2 />
-        </View>
-        <View key="3">
-          <Image
-            source={{
-              uri:
-                "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-            }}
-            style={{ width: 400, height: 400 }}
-          />
-          <Text>This is a Mets Player.</Text>
-        </View>
-        <View key="4">
-          <SettingsScreen name={this.state.player} />
-        </View>
-      </ViewPagerAndroid>
+      <View style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+        >
+          <View style={styles.welcomeContainer}>
+            <Image
+              source={{
+                uri:
+                  "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+              }}
+              style={styles.welcomeImage}
+            />
+          </View>
+
+          <View style={styles.getStartedContainer}>
+            <Text style={styles.getStartedText}>
+              Welcome to Baseball Bandersnatch!
+            </Text>
+            <View
+              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+            >
+              <Text style={styles.codeHighlightText}>
+                Choose a Player to get started
+              </Text>
+            </View>
+            <Text style={styles.getStartedText}>
+              Your player is: {this.state.player}{" "}
+            </Text>
+            <Image source={this.state.chosenPhoto} style={styles.playerImage} />
+            <Text>Their address is: {this.state.address} </Text>
+            <Text style={styles.getStartedText}>
+              You will be deciding how they play today!
+            </Text>
+          </View>
+
+          <View style={styles.helpContainer}>
+            <TouchableOpacity onPress={this._handlePlayer1}>
+              <Image
+                source={{
+                  uri:
+                    "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+                }}
+                style={styles.playerImage}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this._handlePlayer2}>
+              <Image
+                source={{
+                  uri:
+                    "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+                }}
+                style={styles.playerImage}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.photosContainer}>
+            <Text> Or you can add a photo and choose your own player!</Text>
+            <Button
+              title="Load Images"
+              onPress={this._handleButtonPress}
+              style={styles.button}
+            />
+            <ScrollView>
+              {this.state.photos.map((p, i) => {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() => this._handlePlayer3(p.node.image.uri)}
+                  >
+                    <Image
+                      style={styles.playerImage}
+                      source={{ uri: p.node.image.uri }}
+                    />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+        </ScrollView>
+        <View />
+      </View>
     );
   }
-
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync(
       "https://docs.expo.io/versions/latest/guides/development-mode"
@@ -99,14 +169,12 @@ class MyPager extends React.Component {
       }
     });
   };
-
   _handlePlayer3 = photo => {
     this.setState({
       player: "You!",
       chosenPhoto: { uri: photo }
     });
   };
-
   _loadImageClick = async () => {
     try {
       // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
@@ -119,7 +187,6 @@ class MyPager extends React.Component {
     }
   };
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -227,10 +294,5 @@ const styles = StyleSheet.create({
   buttonText: {
     padding: 20,
     color: "green"
-  },
-  viewPager: {
-    flex: 1
   }
 });
-
-export default MyPager;
