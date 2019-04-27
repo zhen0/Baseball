@@ -55,8 +55,8 @@ export default class HomeScreen extends React.Component {
         />
 
         <Text>
-          Oh no! He hit it too far. The other team catch the ball and he is out!
-          The crowd are not happy!
+          Oh no! He swings too fast and misses the ball. He scores no points.
+          He is not happy!
         </Text>
       </View>
     );
