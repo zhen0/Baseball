@@ -18,15 +18,20 @@ export default class SetSceneQ1 extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image
-          source={{
-            uri:
-              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
-          }}
-          style={styles.welcomeImage}
-        />
-        <Text>Hurray! It's Time to Play!</Text>
+      <ScrollView style={styles.container}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.getStartedText}> ---------- </Text>
+          <Image
+            source={{
+              uri:
+                "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+            }}
+            style={styles.welcomeImage}
+          />
+          <Text style={styles.getStartedText}> ---------- </Text>
+        </View>
+
+        <Text style={styles.getStartedText}>Hurray! It's Time to Play!</Text>
         <Image
           source={{
             uri:
@@ -34,25 +39,25 @@ export default class SetSceneQ1 extends React.Component {
           }}
           style={styles.photo}
         />
-        <Text>
+        <Text style={styles.lessonText}>
           {this.props.player} is about to swing the bat to hit the ball. It's an
           important shot! If the team do well, they might win the game. If not,
           it's all over.
         </Text>
-        <Text>Do they swing the bat very fast? </Text>
+        <Text style={styles.lessonText}>Do they swing the bat very fast? </Text>
         <View>
           <Button
             onPress={() => this.props.choice1("a")}
             title="They swing very fast!"
           />
         </View>
-        <Text>Or do they swing too fast?</Text>
+        <Text style={styles.lessonText}>Or do they swing too fast?</Text>
         <Button
           onPress={() => this.props.choice1("b")}
           title="They swing too fast!"
         />
-        <Text>Swipe to see what happens!</Text>
-      </View>
+        <Text style={styles.getStartedText}>Swipe to see what happens!</Text>
+      </ScrollView>
     );
   }
 
@@ -95,11 +100,31 @@ const styles = StyleSheet.create({
     width: 450,
     height: 350
   },
+
+  welcomeContainer: {
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 20,
+    justifyContent: "space-around"
+  },
   welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
+    width: 50,
+    height: 50
+  },
+  getStartedContainer: {
+    flex: 0.7
+  },
+  getStartedText: {
+    fontSize: 20,
+    color: "rgba(96,100,109, 1)",
+    lineHeight: 24,
+
+    fontFamily: "monospace"
+  },
+
+  lessonText: {
+    color: "rgba(96,100,109, 1)",
+    fontSize: 15,
+    fontFamily: "monospace"
   }
 });

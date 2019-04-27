@@ -45,76 +45,76 @@ export default class HomeScreen extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Image
-          source={{
-            uri:
-              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
-          }}
-          style={styles.welcomeImage}
-        />
-        <ScrollView>
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          >
-            <Text style={styles.getStartedText}>
-              Choose a Player to get started
-            </Text>
+      <ScrollView>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.getStartedText}> ---------- </Text>
+          <Image
+            source={{
+              uri:
+                "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+            }}
+            style={styles.welcomeImage}
+          />
+          <Text style={styles.getStartedText}> ---------- </Text>
+        </View>
+        <View style={styles.getStartedContainer}>
+          <Text style={styles.getStartedText}>
+            Choose a Player to get started
+          </Text>
 
-            <Text style={styles.getStartedText}>
-              Your player is: {this.props.player}{" "}
-            </Text>
-            <Image source={this.props.chosenPhoto} style={styles.playerImage} />
+          <Text style={styles.getStartedText}>
+            Your player is: {this.props.player}{" "}
+          </Text>
+          <Image source={this.props.chosenPhoto} style={styles.playerImage} />
 
-            <Text style={styles.getStartedText}>
-              You will be deciding how they play today!
-            </Text>
-          </View>
+          <Text style={styles.getStartedText}>
+            You will be deciding how they play today!
+          </Text>
+        </View>
 
-          <View>
-            <TouchableOpacity onPress={() => this.props.choosePlayer1()}>
-              <Image
-                source={{
-                  uri:
-                    "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
-                }}
-                style={styles.playerImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.choosePlayer2()}>
-              <Image
-                source={{
-                  uri:
-                    "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
-                }}
-                style={styles.playerImage}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.photosContainer}>
-            <Text> Or you can add a photo and choose your own player!</Text>
-            <Button
-              title="Load Images"
-              onPress={this._handleButtonPress}
-              style={styles.button}
+        <View>
+          <TouchableOpacity onPress={() => this.props.choosePlayer1()}>
+            <Image
+              source={{
+                uri:
+                  "https://secure.i.telegraph.co.uk/multimedia/archive/02636/arod_2636286b.jpg"
+              }}
+              style={styles.playerImage}
             />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.choosePlayer2()}>
+            <Image
+              source={{
+                uri:
+                  "https://hips.hearstapps.com/hbz.h-cdn.co/assets/cm/15/04/54bd3d512cfd2_-_hbz-mlb-david-wright-487011951.jpg?crop=1.0xw:1xh;center,top&resize=980:*"
+              }}
+              style={styles.playerImage}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.photosContainer}>
+          <Text> Or you can add a photo and choose your own player!</Text>
+          <Button
+            title="Load Images"
+            onPress={this._handleButtonPress}
+            style={styles.button}
+          />
 
-            {this.state.photos.map((p, i) => {
-              return (
-                <TouchableOpacity
-                  key={i}
-                  onPress={() => this.props.choosePlayer3(p.node.image.uri)}
-                >
-                  <Image
-                    style={styles.playerImage}
-                    source={{ uri: p.node.image.uri }}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
-      </View>
+          {this.state.photos.map((p, i) => {
+            return (
+              <TouchableOpacity
+                key={i}
+                onPress={() => this.props.choosePlayer3(p.node.image.uri)}
+              >
+                <Image
+                  style={styles.playerImage}
+                  source={{ uri: p.node.image.uri }}
+                />
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </ScrollView>
     );
   }
 
@@ -135,20 +135,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: "center"
-  },
+
   contentContainer: {
     paddingTop: 30
   },
   welcomeContainer: {
     alignItems: "center",
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    justifyContent: "space-around"
   },
   welcomeImage: {
     width: 100,
@@ -164,10 +159,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10
   },
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50
-  },
+  getStartedContainer: {},
   homeScreenFilename: {
     marginVertical: 7
   },
@@ -180,10 +172,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 20,
     color: "rgba(96,100,109, 1)",
     lineHeight: 24,
-    textAlign: "center"
+
+    fontFamily: "monospace"
   },
   tabBarInfoContainer: {
     position: "absolute",
