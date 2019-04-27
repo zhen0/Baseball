@@ -35,20 +35,20 @@ export default class SetSceneQ1 extends React.Component {
           style={styles.photo}
         />
         <Text>
-          {this.props.player} is about to hit the ball. It's an important shot!
+          {this.props.player} is about to swing the bat to hit the ball. It's an important shot!
           If they do well, they might win the game. If not, it's all over.
         </Text>
-        <Text>Do they hit the ball very far? </Text>
+        <Text>Do they swing the bat very fast? </Text>
         <View>
           <Button
             onPress={() => this.props.choice1("a")}
-            title="They hit it very far!"
+            title="They swing very fast!"
           />
         </View>
-        <Text>Or do they hit it too far?</Text>
+        <Text>Or do they swing too fast?</Text>
         <Button
           onPress={() => this.props.choice1("b")}
-          title="They hit it too far!"
+          title="They swing too fast!"
         />
         <Text>Swipe to see what happens!</Text>
       </View>
