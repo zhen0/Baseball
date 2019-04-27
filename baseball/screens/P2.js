@@ -53,7 +53,7 @@ export default class HomeScreen extends React.Component {
           style={styles.photo}
         />
 
-        <Text>Yes! He hit it very far and his team wins!! </Text>
+        <Text>Yes! He swings the bat very fast. The ball goes far and he scores points. His team wins!! </Text>
       </View>
     );
   }
