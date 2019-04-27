@@ -43,11 +43,13 @@ export default class SettingsScreen extends React.Component {
     );
   }
   _checkAnswer() {
-    let points = 0;
-    if (this.state.answer2 === "very") {
+    let points = 0
+let answer1 = this.state.answer1.toLowerCase()
+let answer2 = this.state.answer2.toLowerCase()
+    if (answer2 === "very") {
       points++;
     }
-    if (this.state.answer1 === "positive") {
+    if (answer1 === "negative") {
       points++;
     }
 
