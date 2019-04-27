@@ -8,7 +8,7 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import ViewPages from "../screens/ViewPages";
 import Quiz from "../screens/Quiz";
-
+import Help from "../screens/LinksScreen";
 import Lesson from "../screens/Lesson";
 
 const HomeStack = createStackNavigator({
@@ -29,11 +29,11 @@ HomeStack.navigationOptions = {
   )
 };
 
-const HelpStack = createStackNavigator({
+const LessonStack = createStackNavigator({
   Lesson: Lesson
 });
 
-HelpStack.navigationOptions = {
+LessonStack.navigationOptions = {
   tabBarLabel: "Lesson",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -43,12 +43,12 @@ HelpStack.navigationOptions = {
   )
 };
 
-const QuizStack = createStackNavigator({
-  Quiz: Quiz
+const HelpStack = createStackNavigator({
+  Help: Help
 });
 
-QuizStack.navigationOptions = {
-  tabBarLabel: "Quiz",
+HelpStack.navigationOptions = {
+  tabBarLabel: "Help",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -59,6 +59,6 @@ QuizStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  HelpStack,
-  QuizStack
+  LessonStack,
+  HelpStack
 });
