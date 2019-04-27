@@ -22,7 +22,7 @@ const ImageB = {
 
 // import { MonoText } from "../components/StyledText";
 
-export default class HomeScreen extends React.Component {
+export default class P6C extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View styles={styles.container}>
+      <View>
         <Image
           source={{
             uri:
@@ -48,33 +48,16 @@ export default class HomeScreen extends React.Component {
         />
         <Image
           source={{
-            uri: "https://media.giphy.com/media/3ohhwAIFJtEnAIYaju/giphy.gif"
+            uri:
+              "https://media0.giphy.com/media/jN4aoFCcR8Lfi/giphy.gif?cid=790b76115cc3687c337a5377458a2c43&rid=giphy.gif"
           }}
           style={styles.photo}
         />
 
         <Text>
-          Yes! The bat swings very fast. The ball goes far and they score
-          points. The team are very happy!!{" "}
+          Oh no! He swings too fast and misses the ball. He scores no points. He
+          is not happy!
         </Text>
-
-        <Text>
-          Next it is their turn to field. The ball is flying through the sky.
-          They jump to catch the ball.
-        </Text>
-        <Text>Do they jump very far? </Text>
-        <View>
-          <Button
-            onPress={() => this.props.choice2("a")}
-            title="They jump very far!"
-          />
-        </View>
-        <Text>Or do they jump too far?</Text>
-        <Button
-          onPress={() => this.props.choice2("b")}
-          title="They jump too far!"
-        />
-        <Text>Swipe to see what happens!</Text>
       </View>
     );
   }
@@ -84,9 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  photo: {
-    width: 450,
-    height: 350
+  contentContainer: {
+    paddingTop: 30
+  },
+  welcomeContainer: {
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 20
   },
   welcomeImage: {
     width: 100,
@@ -94,5 +81,24 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginTop: 3,
     marginLeft: -10
+  },
+  photo: {
+    width: 450,
+    height: 350
+  },
+
+  photosContainer: {
+    paddingTop: 60,
+    alignItems: "center"
+  },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: "center",
+    backgroundColor: "#4842f4"
+  },
+  buttonText: {
+    padding: 20,
+    color: "green"
   }
 });

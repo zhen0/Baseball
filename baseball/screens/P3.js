@@ -22,7 +22,7 @@ const ImageB = {
 
 // import { MonoText } from "../components/StyledText";
 
-export default class HomeScreen extends React.Component {
+export default class P3 extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -49,15 +49,32 @@ export default class HomeScreen extends React.Component {
         <Image
           source={{
             uri:
-              "https://media0.giphy.com/media/jN4aoFCcR8Lfi/giphy.gif?cid=790b76115cc3687c337a5377458a2c43&rid=giphy.gif"
+              "https://usatthebiglead.files.wordpress.com/2013/07/carlos-beltran-swings-at-bounce-1.gif?w=1000"
           }}
           style={styles.photo}
         />
 
         <Text>
-          Oh no! He swings too fast and misses the ball. He scores no points.
-          He is not happy!
+          Oh no! They swing too fast and miss the ball. They score no points.
+          They are not happy!
         </Text>
+        <Text>
+          Next it is their turn to field. The ball is flying through the sky.
+          They jump to catch the ball.
+        </Text>
+        <Text>Do they jump very far? </Text>
+        <View>
+          <Button
+            onPress={() => this.props.choice2("a")}
+            title="They jump very far!"
+          />
+        </View>
+        <Text>Or do they jump too far?</Text>
+        <Button
+          onPress={() => this.props.choice2("b")}
+          title="They jump too far!"
+        />
+        <Text>Swipe to see what happens!</Text>
       </View>
     );
   }

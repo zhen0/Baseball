@@ -17,6 +17,10 @@ import P4 from "./P4";
 import SignUp from "./SignUp";
 import Lesson from "./Lesson";
 import Quiz from "./Quiz";
+import P5A from "./P5A";
+import P5B from "./P5b";
+import P6A from "./P6a";
+import P6B from "./P6B";
 
 const ImageB = {
   uri:
@@ -31,7 +35,8 @@ class MyPager extends React.Component {
       chosenPhoto: ImageB,
       name: "",
       address: "",
-      choice1: ""
+      choice1: "",
+      choice2: ""
     };
   }
   static navigationOptions = {
@@ -70,15 +75,26 @@ class MyPager extends React.Component {
         <View key="5">
           {this.state.choice1 ? (
             this.state.choice1 === "a" ? (
-              <P2 />
+              <P2 choice2={this._choice2} />
             ) : (
-              <P3 />
+              <P3 choice2={this._choice2} />
             )
           ) : (
             <P4 />
           )}
         </View>
         <View key="6">
+          {this.state.choice2 ? (
+            this.state.choice2 === "a" ? (
+              <P5A />
+            ) : (
+              <P5B />
+            )
+          ) : (
+            <P4 />
+          )}
+        </View>
+        <View key="7">
           <Quiz
             name={this.state.name}
             submit={this._handleSubmit}
@@ -138,6 +154,12 @@ class MyPager extends React.Component {
       choice1: answer
     });
   };
+  _choice2 = answer => {
+    this.setState({
+      choice2: answer
+    });
+  };
+
   _addMe = info => {
     this.setState({
       name: info.name,

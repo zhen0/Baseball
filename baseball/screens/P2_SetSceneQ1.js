@@ -35,8 +35,9 @@ export default class SetSceneQ1 extends React.Component {
           style={styles.photo}
         />
         <Text>
-          {this.props.player} is about to swing the bat to hit the ball. It's an important shot!
-          If they do well, they might win the game. If not, it's all over.
+          {this.props.player} is about to swing the bat to hit the ball. It's an
+          important shot! If the team do well, they might win the game. If not,
+          it's all over.
         </Text>
         <Text>Do they swing the bat very fast? </Text>
         <View>
