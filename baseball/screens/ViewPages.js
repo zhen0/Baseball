@@ -54,7 +54,7 @@ class MyPager extends React.Component {
           />
         </View>
         <View key="2" style={styles.container}>
-          <Lesson />
+          <Lesson name={this.state.name} />
         </View>
         <View key="3">
           <ChoosePlayer

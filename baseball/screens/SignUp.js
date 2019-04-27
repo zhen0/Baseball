@@ -28,39 +28,51 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Image
-          source={{
-            uri:
-              "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
-          }}
-          style={styles.welcomeImage}
-        />
-
-        <Text style={styles.getStartedText}>
-          Welcome to Baseball Bandersnatch!
-        </Text>
-
-        <Text>Sign Up</Text>
-
-        <View style={{ padding: 10 }}>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder="name"
-            onChangeText={name => this.setState({ name })}
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.getStartedText}> ---------- </Text>
+          <Image
+            source={{
+              uri:
+                "https://i.pinimg.com/474x/db/aa/aa/dbaaaa1f36d8f4d73b78d0f7783c4283--baseball-birthday-party-baseball-art.jpg"
+            }}
+            style={styles.welcomeImage}
           />
+          <Text style={styles.getStartedText}> ---------- </Text>
+          <Text style={styles.getStartedText}>
+            Welcome to Baseball Bandersnatch!
+          </Text>
+        </View>
+        <View style={styles.signUpContainer}>
+          <Text style={styles.signUpText}>Sign Up</Text>
+
           <View style={{ padding: 10 }}>
             <TextInput
               style={{ height: 40 }}
-              placeholder="ClassCode"
-              onChangeText={address => this.setState({ address })}
+              placeholder="Name"
+              onChangeText={name => this.setState({ name })}
             />
+            <View>
+              <TextInput
+                style={{ height: 40 }}
+                placeholder="ClassCode"
+                onChangeText={address => this.setState({ address })}
+              />
+            </View>
           </View>
         </View>
-
-        <Button onPress={() => this.props.add(this.state)} title="Add Me" />
+        <Button
+          style={styles.button}
+          onPress={() => this.props.add(this.state)}
+          title="Add Me"
+        />
         <View>
-          <Text>Your Name: {this.props.name}</Text>
-          <Text>Your ClassCode: {this.props.address}</Text>
+          <Text style={styles.getStartedText}> ---------- </Text>
+          <Text style={styles.getStartedText}>
+            Your Name: {this.props.name}
+          </Text>
+          <Text style={styles.getStartedText}>
+            Your ClassCode: {this.props.address}
+          </Text>
         </View>
       </ScrollView>
     );
@@ -72,42 +84,53 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-
-  contentContainer: {
-    paddingTop: 30
-  },
   welcomeContainer: {
+    flex: 1,
+    flexDirection: "column",
     alignItems: "center",
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    justifyContent: "space-around"
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
+    width: 50,
+    height: 50
   },
   getStartedContainer: {
     alignItems: "center",
     marginHorizontal: 50
   },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: "center",
+    backgroundColor: "#4842f4"
+  },
+  buttonText: {
+    padding: 20,
+    color: "green"
+  },
   homeScreenFilename: {
     marginVertical: 7
   },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
+  signUpText: {
+    color: "blue",
+    fontFamily: "monospace",
+    fontSize: 15
   },
-  codeHighlightContainer: {
+  signUpContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
     backgroundColor: "rgba(0,0,0,0.05)",
     borderRadius: 3,
     paddingHorizontal: 4
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 20,
     color: "rgba(96,100,109, 1)",
     lineHeight: 24,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "monospace"
   },
   tabBarInfoContainer: {
     position: "absolute",
