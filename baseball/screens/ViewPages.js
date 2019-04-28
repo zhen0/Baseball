@@ -112,6 +112,14 @@ class MyPager extends React.Component {
       );
       console.log("data in ViewPages", data);
       Alert.alert("Your answers have been submitted!");
+      this.setState({
+        player: ".......",
+        chosenPhoto: ImageB,
+        name: "",
+        address: "",
+        choice1: "",
+        choice2: ""
+      });
     } catch (error) {
       console.error(error);
     }
