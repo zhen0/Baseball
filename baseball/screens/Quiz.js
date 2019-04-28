@@ -67,7 +67,7 @@ export default class SettingsScreen extends React.Component {
   }
   _retrieveData = async () => {
     try {
-      const value = await AsyncStorage.getItem(name);
+      const value = await AsyncStorage.getItem("name");
       if (value !== null) {
         // We have data!!
         console.log(value);
