@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Alert,
   View,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  AsyncStorage
 } from "react-native";
 import { WebBrowser } from "expo";
 

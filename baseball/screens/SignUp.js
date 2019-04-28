@@ -8,7 +8,8 @@ import {
   Button,
   TextInput,
   Alert,
-  View
+  View,
+  AsyncStorage
 } from "react-native";
 
 import axios from "axios";
@@ -65,6 +66,11 @@ export default class HomeScreen extends React.Component {
           onPress={() => this.props.add(this.state)}
           title="Add Me"
         />
+        <Button
+          style={styles.button}
+          onPress={() => this._storeData(this.state)}
+          title="Local Store"
+        />
         <View>
           <Text style={styles.getStartedText}> ---------- </Text>
           <Text style={styles.getStartedText}>
@@ -77,6 +83,13 @@ export default class HomeScreen extends React.Component {
       </ScrollView>
     );
   }
+  _storeData = async info => {
+    try {
+      await AsyncStorage.setItem("name", this.state.name);
+    } catch (error) {
+      // Error saving data
+    }
+  };
 }
 
 const styles = StyleSheet.create({
