@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginVertical: 7
   },
   signUpText: {
-    color: "blue",
+    color: "rgba(96,100,109, 1)",
     fontFamily: "monospace",
     fontSize: 15
   },

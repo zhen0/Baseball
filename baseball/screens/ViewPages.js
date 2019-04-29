@@ -110,8 +110,8 @@ class MyPager extends React.Component {
         "https://pramshare.herokuapp.com/api/users",
         { name: this.state.name, address: this.state.address, points: info }
       );
-      console.log("data in ViewPages", data);
-      Alert.alert("Your answers have been submitted!");
+
+      Alert.alert(`Your answers have been submitted! Your score was ${info}/2`);
       this.setState({
         player: ".......",
         chosenPhoto: ImageB,

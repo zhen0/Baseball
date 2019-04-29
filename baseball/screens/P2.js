@@ -78,7 +78,7 @@ export default class HomeScreen extends React.Component {
           onPress={() => this.props.choice2("b")}
           title="They jump too far!"
         />
-        <Text style={styles.getStartedText}>-----</Text>
+        <Text style={styles.getStartedText}> ---------- </Text>
         <Text style={styles.lessonText}>Swipe to see what happens!</Text>
       </ScrollView>
     );
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   photo: {
-    width: 450,
-    height: 350
+    width: 1,
+    height: 0.5
   },
   welcomeContainer: {
     alignItems: "center",

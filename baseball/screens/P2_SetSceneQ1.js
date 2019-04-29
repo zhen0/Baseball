@@ -56,6 +56,7 @@ export default class SetSceneQ1 extends React.Component {
           onPress={() => this.props.choice1("b")}
           title="They swing too fast!"
         />
+        <Text style={styles.getStartedText}> ---------- </Text>
         <Text style={styles.getStartedText}>Swipe to see what happens!</Text>
       </ScrollView>
     );
