@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   photo: {
-    width: 1,
-    height: 0.5
+    width: 800,
+    height: 500
   },
   welcomeContainer: {
     alignItems: "center",

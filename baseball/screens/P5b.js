@@ -54,6 +54,8 @@ export default class P5B extends React.Component {
         />
 
         <Text>Oh no! They jump too far and they miss the ball!!</Text>
+        <Text style={styles.getStartedText}> ---------- </Text>
+        <Text style={styles.lessonText}>Swipe to see what happens!</Text>
       </View>
     );
   }

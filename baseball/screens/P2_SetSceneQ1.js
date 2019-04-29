@@ -91,15 +91,15 @@ const styles = StyleSheet.create({
     color: "green"
   },
   playerImage: {
-    width: 200,
-    height: 160,
+    width: 400,
+    height: 260,
     resizeMode: "contain",
     marginTop: 3,
-    marginLeft: -10
+    marginLeft: 5
   },
   photo: {
-    width: 450,
-    height: 350
+    width: 600,
+    height: 450
   },
 
   welcomeContainer: {
