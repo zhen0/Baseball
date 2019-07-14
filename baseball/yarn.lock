@@ -844,11 +844,6 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@react-native-community/viewpager@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-1.1.6.tgz#267da51adbdebfb709e2e22f5e06399f49e6b1ae"
-  integrity sha512-WnlLGNdzkL0GQQ1WK0++giXOgQcEU6Dx+WEj7uYmqLNCsIc1Jhvm1ChTEKOs5N7Otz+VgoPBOvQyEuAUKooSOg==
-
 "@react-navigation/core@~3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.4.1.tgz#8c7e0e53cfb8ccaf87afb76a2733f5e5fde20cd8"
@@ -1214,6 +1209,14 @@ aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
+
+axios@^0.18.0:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
+  integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
+  dependencies:
+    follow-redirects "1.5.10"
+    is-buffer "^2.0.2"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -2280,6 +2283,13 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
+
 debug@^3.1.0:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
@@ -3216,6 +3226,13 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -3653,6 +3670,11 @@ is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
+
+is-buffer@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.3.tgz#4ecf3fcf749cbd1e472689e109ac66261a25e725"
+  integrity sha512-U15Q7MXTuZlrbymiz95PJpZxu8IlipAp4dtS3wOdgPXx3mqBnslrWU14kxfHB+Py/+2PVKSr37dMAgM2A4uArw==
 
 is-callable@^1.1.4:
   version "1.1.4"
@@ -4612,9 +4634,9 @@ lodash.zipobject@^4.1.3:
   integrity sha1-s5n1q6j/YqdG9peb8gshT5ZNvvg=
 
 lodash@^4.0.0, lodash@^4.16.6, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
@@ -5847,8 +5869,9 @@ react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-"react-native-maps@github:expo/react-native-maps#v0.22.1-exp.0":
+react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
+  uid e6f98ff7272e5d0a7fe974a41f28593af2d77bb2
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
 react-native-platform-touchable@^1.1.1:
@@ -5909,6 +5932,14 @@ react-native-view-shot@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-2.5.0.tgz#428a997f470d3148d0067c5b46abd988ef1aa4c0"
   integrity sha512-xFJA+N7wh8Ik/17I4QB24e0a0L3atg1ScVehvtYR5UBTgHdzTFA0ZylvXp9gkZt7V+AT5Pni0H3NQItpqSKFoQ==
+
+react-native-viewpager@^0.2.13:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/react-native-viewpager/-/react-native-viewpager-0.2.13.tgz#75e421ae90e89efcd77d2c077c0525382b7c39c5"
+  integrity sha1-deQhrpDonvzXfSwHfAUlOCt8OcU=
+  dependencies:
+    react-timer-mixin "^0.13.3"
+    warning "^2.1.0"
 
 "react-native@https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz":
   version "0.57.1"
@@ -6017,7 +6048,7 @@ react-test-renderer@^16.5.0:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react-timer-mixin@^0.13.2:
+react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
@@ -7154,6 +7185,13 @@ walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+warning@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
+  integrity sha1-ISINnGOvx3qMkhEeARr3Bc4MaQE=
+  dependencies:
+    loose-envify "^1.0.0"
 
 watch@~0.18.0:
   version "0.18.0"
